@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:async/async.dart';
@@ -19,10 +18,6 @@ class API_DOCUMENTS {
 
     request.fields['name'] = name;
     request.files.add(multipartFile);
-    var response = await request.send();
-    print(response.statusCode);
-    response.stream.transform(utf8.decoder).listen((value) {
-      print(value);
-    });
+    await request.send();
   }
 }
