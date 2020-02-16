@@ -55,5 +55,9 @@
     <string>The user can download his signature</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>The signature can be download on the gallery</string>
+    <key>NSCameraUsageDescription</key>
+    <string>The user can take picture</string>
+    <key>NSMicrophoneUsageDescription </key>
+    <string>The user can take video</string>
 </dict>
 </plist>

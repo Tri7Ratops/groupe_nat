@@ -40,7 +40,7 @@ class _SecurePageState extends State<SecurePage> {
                               selectedUrl: "https://lesjoiesducode.fr/",
                             )));
                   },
-                  child: Text("Exemple de WebView"),
+                  child: Text("Exemple de WebView", style: Theme.of(context).textTheme.display1),
                 ),
               )
             ],

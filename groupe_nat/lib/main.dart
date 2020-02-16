@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupe_nat/page/SecurePage.dart';
 import 'package:groupe_nat/page/SignaturePage.dart';
+import 'package:groupe_nat/page/UploadDocumentPage.dart';
 import 'package:groupe_nat/page/geolocationPage.dart';
 import 'package:groupe_nat/page/homePage.dart';
 import 'package:groupe_nat/routes.dart';
@@ -19,10 +20,20 @@ class MyApp extends StatelessWidget {
               title: 'Geolocalisation',
             ),
         Routes.secure: (context) => SecurePage(title: '3D Secure'),
-        Routes.signature: (context) => SignaturePage(title: 'Signature')
+        Routes.signature: (context) => SignaturePage(title: 'Signature'),
+        Routes.upload: (context) => UploadDocumentPage(title: 'Ajout d\'un document')
       },
       theme: ThemeData(
-          textTheme: TextTheme(button: TextStyle(color: Color(0xFFFFFFFF))),
+          inputDecorationTheme: InputDecorationTheme(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Color(0xFF0098BD), width: 2.0),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2.0),
+            ),
+          ),
+          textTheme: TextTheme(
+              button: TextStyle(color: Color(0xFFFFFFFF)), display1: TextStyle(color: Color(0xFFFFFFFF), fontSize: 15)),
           buttonTheme: ButtonThemeData(buttonColor: Color(0xFF0098BD)),
           cardColor: Color(0xFFF2F1F2),
           iconTheme: IconThemeData(color: Color(0xFF0098BD)),
