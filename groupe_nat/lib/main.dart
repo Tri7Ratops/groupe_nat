@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupe_nat/page/SecurePage.dart';
+import 'package:groupe_nat/page/SignaturePage.dart';
 import 'package:groupe_nat/page/geolocationPage.dart';
 import 'package:groupe_nat/page/homePage.dart';
 import 'package:groupe_nat/routes.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         Routes.geolocation: (context) => GeolocationPage(
               title: 'Geolocalisation',
             ),
-        Routes.secure: (context) => SecurePage(title: '3D Secure')
+        Routes.secure: (context) => SecurePage(title: '3D Secure'),
+        Routes.signature: (context) => SignaturePage(title: 'Signature')
       },
       theme: ThemeData(
           textTheme: TextTheme(button: TextStyle(color: Color(0xFFFFFFFF))),

@@ -51,5 +51,9 @@
     <string>This app needs access to location when open and in the background.</string>
     <key>io.flutter.embedded_views_preview</key>
     <true/>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>The user can download his signature</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>The signature can be download on the gallery</string>
 </dict>
 </plist>
