@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Groupe NAT',
+      debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: {
-        Routes.home: (context) => HomePage(title: 'Accueil'),
+        Routes.home: (context) => HomePage(title: 'Martin JANUARIO'),
         Routes.geolocation: (context) => GeolocationPage(
               title: 'Geolocalisation',
             ),
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         Routes.signature: (context) => SignaturePage(title: 'Signature'),
         Routes.upload: (context) => UploadDocumentPage(title: 'Ajout d\'un document'),
         Routes.documents: (context) => DocumentsPage(title: 'Mes documents'),
-        Routes.document: (context) => DocumentPage()
+        Routes.document: (context) => DocumentPage(),
       },
       theme: ThemeData(
           primaryColorDark: Color(0xFF000000),

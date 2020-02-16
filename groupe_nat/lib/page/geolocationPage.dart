@@ -15,7 +15,6 @@ class GeolocationPage extends StatefulWidget {
 
 class _GeolocationPageState extends State<GeolocationPage> {
   final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-
   Position _currentPosition;
   String _currentAddress;
 

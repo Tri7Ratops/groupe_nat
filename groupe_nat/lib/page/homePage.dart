@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
     _homeItem("Geolocalisation", Icons.pin_drop, Routes.geolocation),
     _homeItem("Signature", Icons.brush, Routes.signature),
     _homeItem("3D secure", Icons.security, Routes.secure),
-    _homeItem("Live document", Icons.group, ""),
   ];
 
   @override

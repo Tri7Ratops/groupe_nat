@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:groupe_nat/model/documentModel.dart';
 import 'package:groupe_nat/repository/documentRepository.dart';
 import 'package:groupe_nat/routes.dart';
+import 'package:groupe_nat/utils/alert.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -21,64 +22,13 @@ class _DocumentsPageState extends State<DocumentsPage> {
   bool _loading = true;
   List<DocumentModel> _list = new List<DocumentModel>();
 
-  _alert(String title, String description) {
-    Alert(
-      closeFunction: () {},
-      context: context,
-      type: AlertType.error,
-      title: title,
-      desc: description,
-      buttons: [
-        DialogButton(
-          child: Text(
-            "Compris",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
-    ).show();
-  }
-
-  _alertDelete(Function callback) {
-    Alert(
-      closeFunction: () {},
-      context: context,
-      type: AlertType.error,
-      title: "Supression du document",
-      desc: "Êtes-vous sure de vouloir supprimer le document ?",
-      buttons: [
-        DialogButton(
-            child: Text(
-              "Annuler",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () => Navigator.pop(context),
-            width: 120,
-            color: Theme.of(context).errorColor),
-        DialogButton(
-          child: Text(
-            "Confirmer",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () {
-            callback();
-            Navigator.pop(context);
-          },
-          width: 120,
-        ),
-      ],
-    ).show();
-  }
-
   _getDocuments() async {
     setState(() => _loading = true);
     _list = new List<DocumentModel>();
     var res = await API_DOCUMENTS.getDocuments();
 
     if (res["message"] != null) {
-      _alert("Une erreur est survenue", res["message"]);
+      MyAlert.basic(context, AlertType.error, "Une erreur est survenue", res["message"]);
     } else {
       for (var item in res["documents"]) {
         _list.add(DocumentModel.fromJson(item));
@@ -136,7 +86,8 @@ class _DocumentsPageState extends State<DocumentsPage> {
                           Expanded(
                             child: IconButton(
                               icon: Icon(Icons.delete),
-                              onPressed: () => _alertDelete(() async {
+                              onPressed: () => MyAlert.confirm(context, AlertType.success, "Supression du document",
+                                  "Êtes-vous sure de vouloir supprimer le document ?", () async {
                                 await API_DOCUMENTS.deleteDocument(_list[index].getId);
                                 _getDocuments();
                               }),

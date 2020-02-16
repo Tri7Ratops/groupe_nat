@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groupe_nat/repository/documentRepository.dart';
+import 'package:groupe_nat/utils/alert.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -29,29 +30,9 @@ class _UploadDocumentPageState extends State<UploadDocumentPage> {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     if (image == null) return;
     if (lookupMimeType(image.path) != "image/png" && lookupMimeType(image.path) != "image/jpeg")
-      _alert(AlertType.error, "Mauvais format", "Uniquement des fichiers JPEG ou PNG");
+      MyAlert.basic(context, AlertType.error, "Mauvais format", "Uniquement des fichiers JPEG ou PNG");
     else
       setState(() => _image = image);
-  }
-
-  _alert(AlertType type, String title, String description) {
-    Alert(
-      closeFunction: () {},
-      context: context,
-      type: type,
-      title: title,
-      desc: description,
-      buttons: [
-        DialogButton(
-          child: Text(
-            "Compris",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
-    ).show();
   }
 
   @override
@@ -70,13 +51,13 @@ class _UploadDocumentPageState extends State<UploadDocumentPage> {
               icon: Icon(Icons.file_upload),
               onPressed: () async {
                 if (_nameController.text.isEmpty || _image == null) {
-                  _alert(AlertType.error, "Champs manquants",
+                  MyAlert.basic(context, AlertType.error, "Champs manquants",
                       "${(_nameController.text.isEmpty) ? "- Nom du document\n" : ""}${(_image == null) ? "- Fichier" : ""}");
                 } else if (!_loading) {
                   setState(() => _loading = true);
                   await API_DOCUMENTS.addDocument(_nameController.text, _image);
                   setState(() => _loading = false);
-                  _alert(AlertType.success, "Upload réussi", "");
+                  MyAlert.basic(context, AlertType.success, "Upload réussi", "");
                   setState(() {
                     _image = null;
                     _nameController.text = "";

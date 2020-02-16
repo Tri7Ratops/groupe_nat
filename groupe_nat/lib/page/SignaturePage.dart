@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groupe_nat/utils/alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:save_in_gallery/save_in_gallery.dart';
 import 'package:signature/signature.dart';
@@ -17,46 +18,6 @@ class SignaturePage extends StatefulWidget {
 class _SignaturePageState extends State<SignaturePage> {
   final SignatureController _controller = SignatureController(penStrokeWidth: 3, penColor: Colors.black);
   final _imageSaver = ImageSaver();
-
-  _alertEmptySignature(title, description) {
-    Alert(
-      closeFunction: () {},
-      context: context,
-      type: AlertType.error,
-      title: title,
-      desc: description,
-      buttons: [
-        DialogButton(
-          child: Text(
-            "Compris",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
-    ).show();
-  }
-
-  _alertDownloadSignature() {
-    Alert(
-      closeFunction: () {},
-      context: context,
-      type: AlertType.success,
-      title: "Téléchargement réussi",
-      desc: "La signature a été téléchargé sur votre appareil",
-      buttons: [
-        DialogButton(
-          child: Text(
-            "Super !",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          onPressed: () => Navigator.pop(context),
-          width: 120,
-        )
-      ],
-    ).show();
-  }
 
   @override
   void dispose() {
@@ -80,17 +41,19 @@ class _SignaturePageState extends State<SignaturePage> {
               icon: Icon(Icons.file_upload),
               onPressed: () async {
                 if (_controller.isEmpty) {
-                  _alertEmptySignature("Pas de signature", "Vous ne pouvez pas télécharger une signature vide");
+                  MyAlert.basic(context, AlertType.error, "Pas de signature",
+                      "Vous ne pouvez pas télécharger une signature vide");
                 } else {
                   var res = await _imageSaver.saveImage(
                     imageBytes: await _controller.toPngBytes(),
                     directoryName: "Mes signatures",
                   );
                   if (res == false) {
-                    _alertEmptySignature("Erreur lors du téléchargement",
+                    MyAlert.basic(context, AlertType.error, "Erreur lors du téléchargement",
                         "Le téléchargement a échoué, avez-vous refusé les accèes à l'application ?");
                   } else {
-                    _alertDownloadSignature();
+                    MyAlert.basic(context, AlertType.success, "Téléchargement réussi",
+                        "La signature a été téléchargé sur votre appareil");
                   }
                 }
               },
