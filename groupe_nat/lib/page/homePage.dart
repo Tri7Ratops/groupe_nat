@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     _homeItem("Ajout d'un document", Icons.file_upload, ""),
     _homeItem("Geolocalisation", Icons.pin_drop, Routes.geolocation),
     _homeItem("Signature", Icons.brush, ""),
-    _homeItem("3D secure", Icons.security, ""),
+    _homeItem("3D secure", Icons.security, Routes.secure),
     _homeItem("Live document", Icons.group, ""),
   ];
 
