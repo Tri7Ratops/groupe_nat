@@ -12,16 +12,16 @@ class GridCard extends StatefulWidget {
 }
 
 class _GridCard extends State<GridCard> {
-  void gestureManagement(bool val) async {
-    //await Navigator.push(context, MaterialPageRoute(builder: (context) => DocumentsListPage(idFolder: widget.id)));
-    //widget.reload();
+  _gestureManagement() {
+    if (widget.pageName.isNotEmpty) {
+      Navigator.pushNamed(context, widget.pageName);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onLongPress: () => gestureManagement(true),
-        onTap: () => gestureManagement(false),
+        onTap: () => _gestureManagement(),
         child: Card(
           margin: const EdgeInsets.all(5),
           child: Center(

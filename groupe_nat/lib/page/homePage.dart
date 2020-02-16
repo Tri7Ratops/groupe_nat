@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:groupe_nat/routes.dart';
 import 'package:groupe_nat/widget/gridCard.dart';
 
 class _homeItem {
@@ -11,6 +12,7 @@ class _homeItem {
 }
 
 class HomePage extends StatefulWidget {
+  static const String routeName = '/';
   HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
@@ -23,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   List<_homeItem> _list = [
     _homeItem("Mes documents", Icons.folder, ""),
     _homeItem("Ajout d'un document", Icons.file_upload, ""),
-    _homeItem("Geolocalisation", Icons.pin_drop, ""),
+    _homeItem("Geolocalisation", Icons.pin_drop, Routes.geolocation),
     _homeItem("Signature", Icons.brush, ""),
     _homeItem("3D secure", Icons.security, ""),
     _homeItem("Live document", Icons.group, ""),
