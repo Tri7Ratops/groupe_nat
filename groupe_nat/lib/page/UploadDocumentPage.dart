@@ -74,7 +74,7 @@ class _UploadDocumentPageState extends State<UploadDocumentPage> {
                       "${(_nameController.text.isEmpty) ? "- Nom du document\n" : ""}${(_image == null) ? "- Fichier" : ""}");
                 } else if (!_loading) {
                   setState(() => _loading = true);
-                  await API_DOCUMENTS.createUser(_nameController.text, _image);
+                  await API_DOCUMENTS.addDocument(_nameController.text, _image);
                   setState(() => _loading = false);
                   _alert(AlertType.success, "Upload réussi", "");
                   setState(() {

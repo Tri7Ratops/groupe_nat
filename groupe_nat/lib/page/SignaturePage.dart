@@ -44,7 +44,7 @@ class _SignaturePageState extends State<SignaturePage> {
       context: context,
       type: AlertType.success,
       title: "Téléchargement réussi",
-      desc: "La signature a été téléchargé dans votre appareil",
+      desc: "La signature a été téléchargé sur votre appareil",
       buttons: [
         DialogButton(
           child: Text(

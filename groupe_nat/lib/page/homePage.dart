@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<_homeItem> _list = [
-    _homeItem("Mes documents", Icons.folder, ""),
+    _homeItem("Mes documents", Icons.folder, Routes.documents),
     _homeItem("Ajout d'un document", Icons.file_upload, Routes.upload),
     _homeItem("Geolocalisation", Icons.pin_drop, Routes.geolocation),
     _homeItem("Signature", Icons.brush, Routes.signature),
