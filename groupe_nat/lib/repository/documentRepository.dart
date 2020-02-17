@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 
 class API_DOCUMENTS {
-  static const globalEndpoint = "http://10.0.2.2:4242/";
+  static const globalEndpoint = "http://51.75.255.217:4242/";
 
   static addDocument(String name, File file) async {
     var uri = Uri.parse(globalEndpoint + "document");

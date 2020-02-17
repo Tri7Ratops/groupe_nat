@@ -9,6 +9,7 @@ import 'package:groupe_nat/page/homePage.dart';
 
 class DocumentArguments {
   final DocumentModel document;
+
   DocumentArguments(this.document);
 }
 
